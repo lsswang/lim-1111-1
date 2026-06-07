@@ -1,6 +1,8 @@
 const http = require('http');
 
-const BASE_URL = 'http://localhost:3000/api';
+const HOST = 'localhost';
+const PORT = 3000;
+const API_PREFIX = '/api';
 const DELIVERY_NO = 'DELIVERY-' + Date.now();
 const STORE_ID = 'STORE-001';
 const DELIVERY_STAFF_ID = 'STAFF-001';
@@ -8,11 +10,11 @@ const INSPECTOR_ID = 'INSPECTOR-001';
 
 function request(path, method, data = null) {
   return new Promise((resolve, reject) => {
-    const url = new URL(path, BASE_URL);
+    const fullPath = API_PREFIX + path;
     const options = {
-      hostname: url.hostname,
-      port: url.port,
-      path: url.pathname,
+      hostname: HOST,
+      port: PORT,
+      path: fullPath,
       method: method,
       headers: {
         'Content-Type': 'application/json'
